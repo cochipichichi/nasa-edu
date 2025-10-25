@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Misiones — NASA‑Edu XR Hub</title>
+<link rel="icon" href="assets/icons/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+<script type="module" src="js/ui.js"></script>
+<script type="module">
+import {getMissions} from './js/data/offline.js';
+const $ = (s,el=document)=>el.querySelector(s);
+addEventListener('DOMContentLoaded', async()=>{
+  const list = $('#list');
+  try{
+    const data = await getMissions();
+    list.innerHTML = data.sort((a,b)=>a.year-b.year).map(m=>`
+      <tr>
+        <td><strong>${m.name}</strong></td>
+        <td>${m.year}</td>
+        <td>${m.summary}</td>
+        <td>${(m.tags||[]).join(', ')}</td>
+      </tr>`).join('');
+  }catch(e){ list.innerHTML = `<tr><td colspan="4">No se pudo cargar.</td></tr>`; }
+});
+</script>
+</head>
+<body>
+<header class="header"><div class="brand"><span class="logo"></span><strong>Misiones</strong></div><nav><a class="btn link" href="./index.html">Inicio</a></nav></header>
+<main class="container">
+  <section class="card">
+    <h1>🛰️ Línea de tiempo de misiones</h1>
+    <table class="table">
+      <thead><tr><th>Misión</th><th>Año</th><th>Resumen</th><th>Tags</th></tr></thead>
+      <tbody id="list"><tr><td colspan="4">Cargando…</td></tr></tbody>
+    </table>
+  </section>
+</main>
+</body>
+</html>

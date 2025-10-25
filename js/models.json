@@ -1,0 +1,50 @@
+[
+  {
+    "id": "perseverance",
+    "emoji": "🛞",
+    "title": "Mars 2020 Perseverance Rover",
+    "desc": "Rover marciano con instrumentos para astrobiología y muestreo.",
+    "nasa_page": "https://science.nasa.gov/3d-resources/mars-2020-perseverance-rover/",
+    "suggested_file": "assets/models/perseverance.glb"
+  },
+  {
+    "id": "ingenuity",
+    "emoji": "🚁",
+    "title": "Ingenuity Mars Helicopter",
+    "desc": "Primer vuelo propulsado en otro planeta.",
+    "nasa_page": "https://science.nasa.gov/3d-resources/ingenuity-mars-helicopter/",
+    "suggested_file": "assets/models/ingenuity.glb"
+  },
+  {
+    "id": "jwst",
+    "emoji": "🛰️",
+    "title": "James Webb Space Telescope",
+    "desc": "Observatorio infrarrojo con espejo primario de 6,5 m.",
+    "nasa_page": "https://science.nasa.gov/3d-resources/james-webb-space-telescope-a/",
+    "suggested_file": "assets/models/jwst.glb"
+  },
+  {
+    "id": "sls",
+    "emoji": "🚀",
+    "title": "SLS — Artemis",
+    "desc": "Cohete del programa Artemis para misiones lunares.",
+    "nasa_page": "https://www.nasa.gov/humans-in-space/space-launch-system/",
+    "suggested_file": "assets/models/sls.glb"
+  },
+  {
+    "id": "iss",
+    "emoji": "🏠",
+    "title": "International Space Station",
+    "desc": "Laboratorio en órbita terrestre baja desde 1998.",
+    "nasa_page": "https://science.nasa.gov/3d-resources/international-space-station/",
+    "suggested_file": "assets/models/iss.glb"
+  },
+  {
+    "id": "orion",
+    "emoji": "🛡️",
+    "title": "Cápsula Orion",
+    "desc": "Nave tripulada para Artemis.",
+    "nasa_page": "https://science.nasa.gov/3d-resources/orion/",
+    "suggested_file": "assets/models/orion.glb"
+  }
+]

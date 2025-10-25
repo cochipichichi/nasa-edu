@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visor 3D/AR/VR — NASA‑Edu XR Hub</title>
+<link rel="icon" href="assets/icons/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+<!-- model-viewer (CDN) -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<script>
+function getParam(k){ return new URL(location.href).searchParams.get(k); }
+document.addEventListener('DOMContentLoaded',()=>{
+  const src = getParam('src') || 'assets/models/placeholder.glb';
+  const mv = document.querySelector('model-viewer');
+  if(mv) mv.setAttribute('src', src);
+});
+</script>
+</head>
+<body>
+<header class="header"><div class="brand"><span class="logo"></span><strong>Visor 3D · AR · VR</strong></div><nav><a class="btn link" href="./index.html">Inicio</a></nav></header>
+<main class="container">
+  <section class="card">
+    <h1>👁️ 3D · 📱 AR · 🥽 VR</h1>
+    <p class="meta">Coloca tus modelos reales (.glb) en <code>/webapp/assets/models/</code>. Este visor usa <code>&lt;model-viewer&gt;</code>.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Ejemplo — Rover (placeholder)</h3>
+        <model-viewer src="assets/models/placeholder.glb" alt="Modelo de ejemplo" ar ar-modes="webxr scene-viewer quick-look" camera-controls
+          poster="assets/icons/icon-192.png" exposure="1" shadow-intensity="0.8" style="width:100%;height:360px;border-radius:14px;overflow:hidden">
+        </model-viewer>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <a class="btn solid" href="assets/models/" download>⬇️ Modelos</a>
+          <button class="btn" onclick="document.querySelector('model-viewer').dismissPoster()">👁️ 3D</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modelos NASA (Cards) — NASA-Edu XR Hub</title>
+<link rel="icon" href="assets/icons/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+<script type="module">
+async function loadCards(){
+  const res = await fetch('./js/models.json'); const data = await res.json();
+  const grid = document.getElementById('grid');
+  grid.innerHTML = data.map(m => `
+  <article class="card" data-id="${m.id}">
+    <h3>${m.emoji} ${m.title}</h3>
+    <p class="meta">${m.desc}</p>
+    <div class="actions" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+      <a class="btn solid" href="./viewer.html?src=${encodeURIComponent(m.suggested_file)}">👁️ Ver 3D</a>
+      <a class="btn" href="${m.nasa_page}" target="_blank" rel="noopener">⬇️ Descargar GLB</a>
+    </div>
+  </article>`).join('');
+}
+addEventListener('DOMContentLoaded', loadCards);
+</script>
+</head>
+<body>
+<header class="header"><div class="brand"><span class="logo"></span><strong>Modelos NASA (Cards)</strong></div><nav><a class="btn link" href="./index.html">Inicio</a></nav></header>
+<main class="container">
+  <section class="card">
+    <h1>Tarjetas de modelos 3D — con emojis y micro-interacciones</h1>
+    <p class="meta">Pulsa <strong>⬇️ Descargar GLB</strong> para ir a la página oficial de NASA y obtener el archivo. Luego colócalo en <code>/webapp/assets/models/</code> con el nombre sugerido. <em>Ver 3D</em> intentará cargar ese archivo local.</p>
+  </section>
+  <section class="grid cards" id="grid" aria-live="polite">
+    <article class="card"><p>Cargando…</p></article>
+  </section>
+</main>
+</body>
+</html>

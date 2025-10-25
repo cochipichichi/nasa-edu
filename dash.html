@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard — NASA‑Edu XR Hub</title>
+<link rel="icon" href="assets/icons/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+<script type="module" src="js/ui.js"></script>
+<script type="module">
+import {getAPOD,getTLE} from './js/data/offline.js';
+const $ = (s,el=document)=>el.querySelector(s);
+function drawChart(canvas, data){
+  const ctx = canvas.getContext('2d');
+  const w=canvas.width=canvas.clientWidth, h=canvas.height=200;
+  ctx.clearRect(0,0,w,h); ctx.strokeStyle='white'; ctx.lineWidth=2; ctx.beginPath();
+  data.forEach((v,i)=>{ const x=i*(w/(data.length-1)); const y=h-(v*h); i?ctx.lineTo(x,y):ctx.moveTo(x,y); });
+  ctx.stroke();
+}
+addEventListener('DOMContentLoaded', async()=>{
+  // APOD
+  try{
+    const apod = await getAPOD();
+    $('#apod-title').textContent = apod.title + ' (' + apod.date + ')';
+    $('#apod-img').src = apod.url;
+    $('#apod-desc').textContent = apod.explanation;
+  }catch{}
+  // TLE
+  try{
+    const tles = await getTLE();
+    $('#tle').textContent = (tles.iss||[]).join('\n');
+  }catch{}
+  // Gráfico simple (fake data 0..1)
+  const series = Array.from({length:20}, (_,i)=> (Math.sin(i/3)+1)/2 );
+  drawChart($('#chart'), series);
+});
+</script>
+</head>
+<body>
+<header class="header"><div class="brand"><span class="logo"></span><strong>Dashboard</strong></div><nav><a class="btn link" href="./index.html">Inicio</a></nav></header>
+<main class="container">
+  <section class="grid cards">
+    <div class="card">
+      <h3>📸 APOD (offline)</h3>
+      <img id="apod-img" alt="APOD" src="assets/icons/icon-192.png" style="border-radius:12px;width:100%;height:auto">
+      <p id="apod-title" class="meta">Cargando…</p>
+      <p id="apod-desc" class="meta"></p>
+    </div>
+    <div class="card">
+      <h3>🛰️ TLE — ISS (ejemplo)</h3>
+      <pre id="tle" class="mono" style="white-space:pre-wrap">Cargando…</pre>
+    </div>
+    <div class="card">
+      <h3>📈 Serie simulada</h3>
+      <canvas id="chart" style="width:100%;height:200px"></canvas>
+      <p class="meta">Ejemplo de gráfico simple sin librerías.</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

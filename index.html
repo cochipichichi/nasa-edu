@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NASA‑Edu XR Hub</title>
+<meta name="theme-color" content="#0d1117">
+<link rel="manifest" href="public/manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+<script type="module" src="js/ui.js"></script>
+<script type="module">
+import {initTheme} from './js/ui.js';
+addEventListener('DOMContentLoaded', initTheme);
+</script>
+</head>
+<body>
+<nav class="skip-links"><a href="#main">Saltar al contenido</a></nav>
+<header class="header" role="banner">
+  <div class="brand"><span class="logo" aria-hidden="true"></span><strong>NASA‑Edu XR Hub</strong><span class="badge">PWA</span></div>
+  <nav aria-label="Principal" style="display:flex;gap:8px;align-items:center">
+    <a class="btn link" href="./missions.html">Misiones</a>
+    <a class="btn link" href="./viewer.html">👁️ 3D · 📱 AR · 🥽 VR</a>
+    <a class="btn link" href="./cards.html">🧩 Cards</a>
+    <a class="btn link" href="./dash.html">Dashboard</a>
+    <button class="btn" id="theme">🌓 Tema</button>
+  </nav>
+</header>
+
+<main id="main" class="container">
+  <section class="card">
+    <h1>Explora misiones, modelos 3D/AR/VR y datos en vivo</h1>
+    <p class="meta">Incluye datos offline y plantillas de clase; si conectas internet + API keys, verás datos reales.</p>
+    <div class="grid cards">
+      <div class="card"><h3>🛰️ Misiones</h3><p>Línea de tiempo de hitos: Apollo, Voyager, ISS, Perseverance, Artemis…</p><a class="btn solid" href="./missions.html">Ver misiones</a></div>
+      <div class="card"><h3>👁️ 3D · 📱 AR · 🥽 VR</h3><p>Visualiza modelos .glb de naves/rovers. Listo para RA/VR donde esté disponible.</p><a class="btn solid" href="./viewer.html">Abrir visor</a></div>
+      <div class="card"><h3>📊 Dashboard</h3><p>Mini panel: APOD, estado simulado, gráfica simple y TLE de ejemplo.</p><a class="btn solid" href="./dash.html">Ir al panel</a></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Cómo usar en el aula</h2>
+    <ul>
+      <li>Asigna una misión por equipo y pideles explicar su impacto.</li>
+      <li>Creen una ficha con QR y una mini exposición (3 minutos).</li>
+      <li>Ticket de salida: ¿qué desafío resolverías en la próxima década?</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>belen.acpe@gmail.com · 📞 +56 9 6266 4960<br>
+    👨‍💻 Francisco Pinto — 📧 franciscoandresp@gmail.com · 📞 +56 9 2002 7992<br>
+    Hecho con ❤️ para el Liceo Bicentenario de Excelencia Polivalente San Nicolás — 👁️ 3D 📱 AR 🥽 VR</p>
+  </footer>
+</main>
+
+<script>
+if('serviceWorker' in navigator && location.protocol==='https:'){ navigator.serviceWorker.register('./sw.js').catch(()=>{}); }
+document.getElementById('theme')?.addEventListener('click',()=>{
+  const cur = document.documentElement.getAttribute('data-theme')||'dark';
+  document.documentElement.setAttribute('data-theme', cur==='dark'?'hc':'dark');
+});
+</script>
+</body>
+</html>
